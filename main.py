@@ -19,35 +19,28 @@ with open(path, encoding = 'utf-8') as f:
             )
         cook_book[course_name] = temp_data
         f.readline()
-    pprint(cook_book)
+    # pprint(cook_book)
 
     print()
 
-    def get_shop_list_by_dishes(dishes, person_count):
-        shop_list = {}
-        for dish in dishes:
-            for ingredient in cook_book[dish]:
-                # print(ingredient)
-                new_shopping_list = {ingredient['ingredient_name']:{'measure':ingredient['measure'],
-                                                                     'quantity':ingredient['quantity']*person_count}}
-                # print(new_shopping_list[ingredient['ingredient_name']])
-                if shop_list.get(ingredient['ingredient_name']):
-                    new_item = (int(shop_list[ingredient['ingredient_name']]['quantity']) +
-                                  int(new_shopping_list[ingredient['ingredient_name']]['quantity']))
-                    shop_list[ingredient['ingredient_name']]['quantity'] = new_item
-                    # print(new_item)
-                else:
-                    shop_list.update(new_shopping_list)
-        pprint(shop_list)
+def get_shop_list_by_dishes(dishes, person_count, menu):
+    shop_list = {}
+    for dish in dishes:
+        for ingredient in menu[dish]:
+            # print(ingredient)
+            new_shopping_list = {ingredient['ingredient_name']:{'measure':ingredient['measure'],
+                                                                 'quantity':ingredient['quantity']*person_count}}
+            # print(new_shopping_list[ingredient['ingredient_name']])
+            if shop_list.get(ingredient['ingredient_name']):
+                new_item = (int(shop_list[ingredient['ingredient_name']]['quantity']) +
+                              int(new_shopping_list[ingredient['ingredient_name']]['quantity']))
+                shop_list[ingredient['ingredient_name']]['quantity'] = new_item
+                # print(new_item)
+            else:
+                shop_list.update(new_shopping_list)
+    pprint(shop_list)
 
 
-    get_shop_list_by_dishes(['Омлет', 'Запеченный картофель'], 3)
-
-
-
-
-
-
-
+get_shop_list_by_dishes(['Омлет', 'Запеченный картофель'], 3, cook_book)
 
 
