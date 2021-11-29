@@ -23,10 +23,10 @@ with open(path, encoding = 'utf-8') as f:
 
     print()
 
-def get_shop_list_by_dishes(dishes, person_count, menu):
+def get_shop_list_by_dishes(dishes, person_count):
     shop_list = {}
     for dish in dishes:
-        for ingredient in menu[dish]:
+        for ingredient in cook_book[dish]:
             # print(ingredient)
             new_shopping_list = {ingredient['ingredient_name']:{'measure':ingredient['measure'],
                                                                  'quantity':ingredient['quantity']*person_count}}
@@ -38,9 +38,11 @@ def get_shop_list_by_dishes(dishes, person_count, menu):
                 # print(new_item)
             else:
                 shop_list.update(new_shopping_list)
-    pprint(shop_list)
+    return shop_list
+
+def create_shop_list():
+    return get_shop_list_by_dishes()
 
 
-get_shop_list_by_dishes(['Омлет', 'Запеченный картофель'], 3, cook_book)
-
+pprint(get_shop_list_by_dishes(['Омлет', 'Фахитос'], 3))
 
