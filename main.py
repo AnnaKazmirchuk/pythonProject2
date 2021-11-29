@@ -40,9 +40,9 @@ def get_shop_list_by_dishes(dishes, person_count):
                 shop_list.update(new_shopping_list)
     return shop_list
 
-def create_shop_list():
-    return get_shop_list_by_dishes()
+def create_shop_list(dishes, person_count):
+    pprint(get_shop_list_by_dishes(dishes, person_count))
 
 
-pprint(get_shop_list_by_dishes(['Омлет', 'Фахитос'], 3))
+create_shop_list(['Омлет', 'Фахитос'], 3)
 
